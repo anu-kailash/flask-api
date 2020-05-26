@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -33,3 +34,19 @@ session = Session()
 result = session.query(Album).all()
 for row in result:
    print ("Title: ",row.Title, "Artist ID:",row.ArtistId)
+=======
+from sqlalchemy import create_engine, Column, Integer,NVARCHAR
+from sqlalchemy.ext.declarative import declarative_base
+engine=create_engine("sqlite:///chinook.db", echo=True)
+Base=declarative_base()
+
+
+class Albums(Base):
+    __tablename__ = 'albums'
+    AlbumId=Column(Integer,primary_key=True,autoincrement=True, nullable=True)
+    Title=Column(NVARCHAR, nullable=True)
+    ArtistId=Column(Integer, nullable=True)
+
+
+Base.metadata.create_all(engine)
+>>>>>>> 70d6c4aed5b1f9dbcd3a0a1231338c4dacafb0c0
