@@ -1,6 +1,6 @@
 import sqlite3
 
-from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC
+from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -121,3 +121,75 @@ class Tracks(Base):                  # Model class for Tracks table in chinook d
 
 
 Base.metadata.create_all(engine)
+
+
+class Invoices(Base):                  # Model class for Invoices table in chinook database-------------------
+    __tablename__ = 'invoices'
+    InvoiceId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
+    CustomerId=Column(Integer,ForeignKey('customers.CustomerID'), nullable=False)
+    InvoiceDate = Column(DATETIME, nullable=False)
+    BillingAddress = Column(NVARCHAR(70))
+    BillingCity = Column(NVARCHAR(40))
+    BillingState = Column(NVARCHAR(40))
+    BillingCountry = Column(NVARCHAR(40))
+    BillingPostalCode = Column(NVARCHAR(10))
+    Total = Column(NUMERIC(10,2), nullable=False)
+
+
+Base.metadata.create_all(engine)
+
+
+class Invoice_Items(Base):                  # Model class for Invoice_Items table in chinook database-------------------
+    __tablename__ = 'invoice_items'
+    InvoiceLineId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
+    InvoiceId=Column(Integer,ForeignKey('invoices.InvoiceId'), nullable=False)
+    TrackId = Column(Integer,ForeignKey('tracks.TrackId'), nullable=False)
+    UnitPrice = Column(NUMERIC(10,2),nullable=False)
+    Quantity = Column(Integer,nullable=False)
+
+
+Base.metadata.create_all(engine)
+
+
+class Playlists(Base):                  # Model class for Playlists table in chinook database-------------------
+    __tablename__ = 'playlists'
+    PlaylistId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
+    Name=Column(NVARCHAR(120))
+
+
+Base.metadata.create_all(engine)
+
+
+class PlaylistTrack(Base):                  # Model class for PlaylistTrack table in chinook database-------------------
+    __tablename__ = 'playlist_track'
+    PlaylistId=Column(Integer, ForeignKey('playlists.PlaylistId'),primary_key=True,nullable=False,)
+    TrackId=Column(Integer,ForeignKey('tracks.TrackId'),nullable=False)
+
+
+Base.metadata.create_all(engine)
+
+
+class SqliteSeq(Base):              # Model class for SqliteSequence table in chinook database------------
+    __tablename__='sqliteseq'
+    SqliteSeq_Id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    Name = Column(NVARCHAR(40), nullable=True)
+    Seq = Column(NVARCHAR(120))
+
+
+Base.metadata.create_all(engine)
+
+
+class SqliteStat(Base):         # Model class for SqliteStatic1 table in chinook database------------
+    __tablename__='sqlitestatic1'
+    SqliteStat_Id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    tbl = Column(TEXT)
+    idx = Column(TEXT)
+    stat = Column(TEXT)
+
+
+Base.metadata.create_all(engine)
+
+
+
+
+
