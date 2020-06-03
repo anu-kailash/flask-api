@@ -28,6 +28,8 @@ for row in result:
     print("Title: ", row.Title,"ArtistId: ", row.ArtistId)
 
 
+
+
 class Artist(Base):
     __tablename__ = 'artists'
     ArtistId = Column(Integer, primary_key=True, nullable=True, autoincrement=True)
