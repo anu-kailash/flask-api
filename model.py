@@ -1,5 +1,3 @@
-import sqlite3
-
 from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
