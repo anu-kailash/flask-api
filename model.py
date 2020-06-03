@@ -78,4 +78,19 @@ class Customer(Base):
 Base.metadata.create_all(engine)
 
 
+class Genres(Base):
+    __tablename__ = 'genres'
+    GenreId=Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    Name=Column(String(120), nullable=False)
 
+
+Base.metadata.create_all(engine)
+
+
+class MediaTypes(Base):
+    __tablename__ = 'media_types'
+    MediaTypeId = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    Name = Column(String(120))
+
+
+Base.metadata.create_all(engine)
