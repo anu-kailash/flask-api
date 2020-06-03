@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 flask 
 sqlalchemy
 flask-sqlalchemy
+=======
+flask
+SQLAlchemy
+flask-sqlalchemy
+>>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
