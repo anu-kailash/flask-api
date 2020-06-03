@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from model import Artists, Album, engine
-
+# create a Session *********
 Session = sessionmaker(bind=engine)
 session = Session()
 # add objects to the table -************
