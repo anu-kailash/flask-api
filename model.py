@@ -1,26 +1,26 @@
 from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 # Declare mapping ********
+from sqlalchemy.testing import db
+
 Base=declarative_base()
 engine=create_engine('sqlite:///chinook.db', echo=True)
+
+class Artists(Base):                  # Model class for Artists table in chinook database------------------------------
+    __tablename__ = 'artists'
+    ArtistId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
+    Name=Column(NVARCHAR(120), nullable=False)
+
+
+Base.metadata.create_all(engine)
 
 
 class Album(Base):                  # Model class for Album table in chinook database-------------------------------
     __tablename__ = 'albums'
     AlbumId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     Title=Column(NVARCHAR(160), nullable=False)
-    ArtistId=Column(Integer,ForeignKey('artists.ArtistId'), nullable=False, )
-
-
-Base.metadata.create_all(engine)
-
-
-class Artists(Base):                  # Model class for Artists table in chinook database------------------------------
-    __tablename__ = 'artists'
-    ArtistId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
-    Name=Column(NVARCHAR(120), nullable=False)
+    ArtistId=Column(Integer,ForeignKey('Artists'), nullable=True)
 
 
 Base.metadata.create_all(engine)
