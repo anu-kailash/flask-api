@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -172,3 +173,19 @@ Base.metadata.create_all(engine)
 
 
 
+=======
+from sqlalchemy import create_engine, Column, Integer,NVARCHAR
+from sqlalchemy.ext.declarative import declarative_base
+engine=create_engine("sqlite:///chinook.db", echo=True)
+Base=declarative_base()
+
+
+class Albums(Base):
+    __tablename__ = 'albums'
+    AlbumId=Column(Integer,primary_key=True,autoincrement=True, nullable=True)
+    Title=Column(NVARCHAR, nullable=True)
+    ArtistId=Column(Integer, nullable=True)
+
+
+Base.metadata.create_all(engine)
+>>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
