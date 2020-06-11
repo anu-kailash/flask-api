@@ -23,7 +23,7 @@ def api_all():
     conn = sqlite3.connect('chinook.db')
     conn.row_factory = dict_factory
     cur = conn.cursor()
-    all_books = cur.execute('SELECT * FROM albums;').fetchall()
+    all_books = cur.execute('SELECT a.AlbumId,a.Title,b.Name FROM albums as a JOIN artists as b ON a.ArtistId=b.ArtistId ').fetchall()
 
     return jsonify(all_books)
 
@@ -41,7 +41,7 @@ def api_filter():
     title = query_parameters.get('Title')
     artistid = query_parameters.get('ArtistId')
 
-    query = "SELECT * FROM albums WHERE"
+    query = "SELECT * from albums WHERE"
     to_filter = []
 
     if albumid:
