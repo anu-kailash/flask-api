@@ -41,7 +41,7 @@ def api_filter():
     title = query_parameters.get('Title')
     artistid = query_parameters.get('ArtistId')
 
-    query = "SELECT * from albums WHERE"
+    query = "SELECT a.AlbumId,a.Title,b.Name FROM albums as a JOIN artists as b WHERE a.ArtistId=b.ArtistId AND "
     to_filter = []
 
     if albumid:
