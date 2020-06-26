@@ -1,12 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///chinook.db', echo=True)
+engine = create_engine(r"sqlite:///C:\Users\wfhuser3\Test\flask-api\flask-api\sqlite_databases\chinook.db", echo=True)
 Base = declarative_base()
-Session = sessionmaker(bind = engine)
-session = Session()
 
 
 class Album(Base):
@@ -16,27 +13,11 @@ class Album(Base):
     ArtistId = Column(Integer, nullable=True)
 
 
-Base.metadata.create_all(engine)
-session.add_all([
-   Album(Title='ABCD-TEST', ArtistId='1'),
-   Album(Title='Sundhar', ArtistId='2'),
-   Album(Title='Veenapoov', ArtistId='3')]
-)
-session.commit()
-result=session.query(Album).all()
-for row in result:
-    print("Title: ", row.Title,"ArtistId: ", row.ArtistId)
-
-
-
-
 class Artist(Base):
     __tablename__ = 'artists'
     ArtistId = Column(Integer, primary_key=True, nullable=True, autoincrement=True)
     name = Column(String(120))
 
-
-Base.metadata.create_all(engine)
 
 class Employee(Base):
     __tablename__ = 'employees'
@@ -57,9 +38,6 @@ class Employee(Base):
     Email = Column(String(60), nullable=True)
 
 
-Base.metadata.create_all(engine)
-
-
 class Customer(Base):
     __tablename__ = 'customers'
     CustomerId = Column(Integer, primary_key=True, nullable=True, autoincrement=True)
@@ -77,16 +55,10 @@ class Customer(Base):
     SupportRepId = Column(Integer, ForeignKey('employees.EmployeeId'), nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class Genres(Base):
     __tablename__ = 'genres'
-    GenreId=Column(Integer, primary_key=True, nullable=False, autoincrement=True)
-    Name=Column(String(120), nullable=False)
-
-
-Base.metadata.create_all(engine)
+    GenreId = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    Name = Column(String(120), nullable=False)
 
 
 class MediaTypes(Base):
