@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT
+from sqlalchemy import Column, Integer, NVARCHAR, ForeignKey, DATETIME, NUMERIC, TEXT, String
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 # Declare mapping ********
@@ -16,17 +13,11 @@ class Artists(Base):                  # Model class for Artists table in chinook
     Name=Column(NVARCHAR(120), nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class Album(Base):                  # Model class for Album table in chinook database-------------------------------
     __tablename__ = 'albums'
     AlbumId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     Title=Column(NVARCHAR(160), nullable=False)
-    ArtistId=Column(Integer,ForeignKey('Artists'), nullable=True)
-
-
-Base.metadata.create_all(engine)
+    ArtistId=Column(Integer, ForeignKey(Artists.ArtistId), nullable=True)
 
 
 class Employees(Base):              # Model class for Employees table in chinook database-------------------
@@ -48,9 +39,6 @@ class Employees(Base):              # Model class for Employees table in chinook
     Email = Column(NVARCHAR(60))
 
 
-Base.metadata.create_all(engine)
-
-
 class Customers(Base):                      # Model class for Customers table in chinook database-------------------
     __tablename__ = 'customers'
     CustomerID=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
@@ -68,25 +56,16 @@ class Customers(Base):                      # Model class for Customers table in
     SupportRepId = Column(Integer,ForeignKey('employees.EmployeeId'),nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class Genres(Base):                  # Model class for Genres table in chinook database------------------------------
     __tablename__ = 'genres'
     GenreId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     Name=Column(NVARCHAR(120), nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class MediaTypes(Base):                  # Model class for Media_types table in chinook database-------------------
     __tablename__ = 'media_types'
     MediaTypeId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     Name=Column(NVARCHAR(120))
-
-
-Base.metadata.create_all(engine)
 
 
 class Tracks(Base):                  # Model class for Tracks table in chinook database-------------------
@@ -102,9 +81,6 @@ class Tracks(Base):                  # Model class for Tracks table in chinook d
     UnitPrice=Column(NUMERIC(10,2),nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class Invoices(Base):                  # Model class for Invoices table in chinook database-------------------
     __tablename__ = 'invoices'
     InvoiceId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
@@ -118,10 +94,7 @@ class Invoices(Base):                  # Model class for Invoices table in chino
     Total = Column(NUMERIC(10,2), nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
-class Invoice_Items(Base):                  # Model class for Invoice_Items table in chinook database-------------------
+class Invoice_Items(Base):                  # Model class for Invoice_Items table in chinook database---
     __tablename__ = 'invoice_items'
     InvoiceLineId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     InvoiceId=Column(Integer,ForeignKey('invoices.InvoiceId'), nullable=False)
@@ -130,16 +103,10 @@ class Invoice_Items(Base):                  # Model class for Invoice_Items tabl
     Quantity = Column(Integer,nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class Playlists(Base):                  # Model class for Playlists table in chinook database-------------------
     __tablename__ = 'playlists'
     PlaylistId=Column(Integer, primary_key=True,nullable=False, autoincrement=True)
     Name=Column(NVARCHAR(120))
-
-
-Base.metadata.create_all(engine)
 
 
 class PlaylistTrack(Base):                  # Model class for PlaylistTrack table in chinook database-------------------
@@ -148,17 +115,11 @@ class PlaylistTrack(Base):                  # Model class for PlaylistTrack tabl
     TrackId=Column(Integer,ForeignKey('tracks.TrackId'),nullable=False)
 
 
-Base.metadata.create_all(engine)
-
-
 class SqliteSeq(Base):              # Model class for SqliteSequence table in chinook database------------
     __tablename__='sqliteseq'
     SqliteSeq_Id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     Name = Column(NVARCHAR(40), nullable=True)
     Seq = Column(NVARCHAR(120))
-
-
-Base.metadata.create_all(engine)
 
 
 class SqliteStat(Base):         # Model class for SqliteStatic1 table in chinook database------------
@@ -169,37 +130,15 @@ class SqliteStat(Base):         # Model class for SqliteStatic1 table in chinook
     stat = Column(TEXT)
 
 
+class Member(Base):         # Model class for SqliteStatic1 table in chinook database------------
+    __tablename__='member'
+    MemberId = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    Member = Column(String(40))
+    Unit = Column(String(40))
+    Place = Column(String(40))
+
+
 Base.metadata.create_all(engine)
 
 
 
-
-
-=======
-=======
->>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
-=======
->>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
-from sqlalchemy import create_engine, Column, Integer,NVARCHAR
-from sqlalchemy.ext.declarative import declarative_base
-engine=create_engine("sqlite:///chinook.db", echo=True)
-Base=declarative_base()
-
-
-class Albums(Base):
-    __tablename__ = 'albums'
-    AlbumId=Column(Integer,primary_key=True,autoincrement=True, nullable=True)
-    Title=Column(NVARCHAR, nullable=True)
-    ArtistId=Column(Integer, nullable=True)
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-Base.metadata.create_all(engine)
->>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
-=======
-Base.metadata.create_all(engine)
->>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86
-=======
-Base.metadata.create_all(engine)
->>>>>>> 75a8b17a51d07dd034c1b340a328df9056dc6c86

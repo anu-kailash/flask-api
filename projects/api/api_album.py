@@ -36,7 +36,6 @@ def page_not_found(e):
 @app.route('/api/v1/resources/album', methods=['GET'])
 def api_filter():
     query_parameters = request.args
-
     albumid = query_parameters.get('AlbumId')
     title = query_parameters.get('Title')
     artistid = query_parameters.get('ArtistId')

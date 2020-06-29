@@ -12,10 +12,7 @@ session = Session()
 # add objects to the table -************
 #Album.Title = 'The Sun Rise',
 #Album.ArtistId = 13
-# A1 = Album(Title='The Sun Rise', ArtistId=13)
-#address = Album('Joe')
-#session.add(address)
-#session.commit()
+
 
 # Select the data's in table and printing ---------------Album Table-----------------------------------------------
 result = session.query(Album).all()
